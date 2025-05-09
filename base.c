@@ -37,6 +37,32 @@ char    stack_info[STACK_SIZE][20];     // Call Stack 요소에 대한 설명을
 int SP = -1; 
 int FP = -1;
 
+
+
+// 스택에 값을 추가하는 함수
+void push(int value, const char* info) {
+if (SP >= STACK_SIZE - 1) {
+printf("Stack overflow!\n");
+return;
+}
+SP++;
+call_stack[SP] = value;
+snprintf(stack_info[SP], 20, "%s", info);
+}
+
+// 스택에서 값을 제거하고 반환하는 함수
+int pop() {
+if (SP == -1) {
+printf("Stack underflow!\n");
+return -1;
+}
+int value = call_stack[SP];
+SP--;
+return value;
+}
+
+
+
 void func1(int arg1, int arg2, int arg3);
 void func2(int arg1, int arg2);
 void func3(int arg1);
