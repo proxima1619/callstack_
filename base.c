@@ -102,7 +102,18 @@ void print_stack()
 //func 내부는 자유롭게 추가해도 괜찮으나, 아래의 구조를 바꾸지는 마세요
 void func1(int arg1, int arg2, int arg3)
 {
+    // 프롤로그: 스택 프레임 설정
+    push(arg3, "arg3");
+    push(arg2, "arg2");
+    push(arg1, "arg1");
+    push(-1, "Return Address");
+    push(FP, "func1 SFP");
+    FP = SP;
+
     int var_1 = 100;
+
+    push(var_1, "var_1");
+
 
     // func1의 스택 프레임 형성 (함수 프롤로그 + push)
     print_stack();
@@ -114,7 +125,17 @@ void func1(int arg1, int arg2, int arg3)
 
 void func2(int arg1, int arg2)
 {
+    // 프롤로그: 스택 프레임 설정
+    push(arg2, "arg2");
+    push(arg1, "arg1");
+    push(-1, "Return Address");
+    push(FP, "func2 SFP");
+    FP = SP;
+
     int var_2 = 200;
+
+    push(var_2, "var_2");
+
 
     // func2의 스택 프레임 형성 (함수 프롤로그 + push)
     print_stack();
@@ -126,8 +147,18 @@ void func2(int arg1, int arg2)
 
 void func3(int arg1)
 {
+    // 프롤로그: 스택 프레임 설정
+    push(arg1, "arg1");
+    push(-1, "Return Address");
+    push(FP, "func3 SFP");
+    FP = SP;
+
     int var_3 = 300;
     int var_4 = 400;
+
+    push(var_3, "var_3");
+    push(var_4, "var_4");
+    
 
     // func3의 스택 프레임 형성 (함수 프롤로그 + push)
     print_stack();
