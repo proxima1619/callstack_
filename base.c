@@ -120,6 +120,15 @@ void func1(int arg1, int arg2, int arg3)
     func2(11, 13);
     // func2의 스택 프레임 제거 (함수 에필로그 + pop)
     print_stack();
+
+    // 에필로그: 스택 프레임 정리
+    SP = FP;
+    FP = call_stack[SP];
+    pop();  // SFP 제거
+    pop();  // 반환 주소 제거
+    pop();  // arg1 제거
+    pop();  // arg2 제거
+    pop();  // arg3 제거
 }
 
 
@@ -142,6 +151,14 @@ void func2(int arg1, int arg2)
     func3(77);
     // func3의 스택 프레임 제거 (함수 에필로그 + pop)
     print_stack();
+
+    // 에필로그: 스택 프레임 정리
+    SP = FP;
+    FP = call_stack[SP];
+    pop();  // SFP 제거
+    pop();  // 반환 주소 제거
+    pop();  // arg1 제거
+    pop();  // arg2 제거
 }
 
 
@@ -158,7 +175,7 @@ void func3(int arg1)
 
     push(var_3, "var_3");
     push(var_4, "var_4");
-    
+
 
     // func3의 스택 프레임 형성 (함수 프롤로그 + push)
     print_stack();
